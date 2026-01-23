@@ -1,6 +1,7 @@
 ﻿using BepInEx;
 using BepInEx.Logging;
 using BepInEx.Unity.IL2CPP;
+using NeuroSdk;
 
 namespace NeuroElysium;
 
@@ -12,5 +13,6 @@ internal class Plugin : BasePlugin {
     public override void Load() {
         Log = base.Log;
         AddComponent<FrameUpdater>();
+        NeuroSdkSetup.Initialize(Global.Game);
     }
 }
