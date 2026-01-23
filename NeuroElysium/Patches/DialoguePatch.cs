@@ -14,8 +14,6 @@ internal class DialoguePatch {
         if (string.IsNullOrEmpty(text))
             return;
 
-        Plugin.Log.LogInfo(text);
-
         Context.Send(text);
     }
 }
