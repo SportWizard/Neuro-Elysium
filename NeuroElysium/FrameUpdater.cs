@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace NeuroElysium;
 
-public class FrameUpdater : MonoBehaviour {
+internal class FrameUpdater : MonoBehaviour {
     private string prevText = "";
 
     private void Update() {
