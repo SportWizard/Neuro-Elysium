@@ -1,8 +1,6 @@
 ﻿using BepInEx;
 using BepInEx.Logging;
 using BepInEx.Unity.IL2CPP;
-using HarmonyLib;
-using NeuroElysium.Patches;
 
 namespace NeuroElysium;
 
@@ -14,7 +12,6 @@ public class Plugin : BasePlugin {
     public override void Load() {
         Log = base.Log;
 
-        Harmony harmony = new Harmony("BepInEx_Patch");
-        harmony.PatchAll(typeof(DialoguePatch));
+        AddComponent<FrameUpdater>();
     }
 }
