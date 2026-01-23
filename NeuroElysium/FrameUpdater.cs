@@ -7,7 +7,7 @@ internal class FrameUpdater : MonoBehaviour {
     private string prevText = "";
 
     private void Update() {
-        if (!DialogueManager.hasInstance || !DialogueManager.isConversationActive)
+        if (!DialogueManager.isConversationActive)
             return;
 
         ConversationState conversationState = DialogueManager.currentConversationState;
