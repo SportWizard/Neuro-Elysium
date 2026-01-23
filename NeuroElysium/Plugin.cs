@@ -3,7 +3,6 @@ using BepInEx.Logging;
 using BepInEx.Unity.IL2CPP;
 using NeuroSdk;
 using HarmonyLib;
-using NeuroElysium.Patches;
 
 namespace NeuroElysium;
 
@@ -16,8 +15,7 @@ internal class Plugin : BasePlugin {
         Log = base.Log;
 
         Harmony harmony = new("com.sportwizard.neuroelysium");
-        harmony.PatchAll(typeof(DialoguePatch));
-        harmony.PatchAll(typeof(ResponsesPatch));
+        harmony.PatchAll();
 
         NeuroSdkSetup.Initialize(Global.Game);
     }
