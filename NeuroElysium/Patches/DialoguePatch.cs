@@ -1,5 +1,6 @@
 ﻿using HarmonyLib;
 using PixelCrushers.DialogueSystem;
+using NeuroSdk.Messages.Outgoing;
 
 namespace NeuroElysium.Patches;
 
@@ -7,6 +8,13 @@ internal class DialoguePatch {
     [HarmonyPatch(typeof(ConversationView), "StartSubtitle")]
     [HarmonyPrefix]
     static void StartSubtitlePrefix(Subtitle subtitle, bool isPCResponseMenuNext, bool isPCAutoResponseNext) {
-        Plugin.Log.LogInfo(subtitle.dialogueEntry.currentDialogueText);
+        string text = subtitle.dialogueEntry.currentDialogueText;
+
+        if (string.IsNullOrEmpty(text))
+            return;
+
+        Plugin.Log.LogInfo(text);
+
+        Context.Send(text);
     }
 }
