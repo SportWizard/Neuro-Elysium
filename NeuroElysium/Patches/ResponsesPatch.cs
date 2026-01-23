@@ -4,6 +4,7 @@ using PixelCrushers.DialogueSystem;
 
 namespace NeuroElysium.Patches;
 
+[HarmonyPatch]
 internal class ResponsesPatch {
     [HarmonyPatch(typeof(ConversationView), "StartResponses")]
     [HarmonyPrefix]

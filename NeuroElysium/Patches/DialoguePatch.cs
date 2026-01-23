@@ -4,6 +4,7 @@ using NeuroSdk.Messages.Outgoing;
 
 namespace NeuroElysium.Patches;
 
+[HarmonyPatch]
 internal class DialoguePatch {
     [HarmonyPatch(typeof(ConversationView), "StartSubtitle")]
     [HarmonyPrefix]
