@@ -2,6 +2,8 @@
 using BepInEx.Logging;
 using BepInEx.Unity.IL2CPP;
 using NeuroSdk;
+using HarmonyLib;
+using NeuroElysium.Patches;
 
 namespace NeuroElysium;
 
@@ -12,7 +14,11 @@ internal class Plugin : BasePlugin {
 
     public override void Load() {
         Log = base.Log;
-        AddComponent<FrameUpdater>();
+
+        Harmony harmony = new("com.sportwizard.neuroelysium");
+        harmony.PatchAll(typeof(DialoguePatch));
+        harmony.PatchAll(typeof(ResponsesPatch));
+
         NeuroSdkSetup.Initialize(Global.Game);
     }
 }
