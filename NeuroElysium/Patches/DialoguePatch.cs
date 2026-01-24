@@ -8,7 +8,7 @@ namespace NeuroElysium.Patches;
 internal class DialoguePatch {
     [HarmonyPatch(typeof(ConversationView), "StartSubtitle")]
     [HarmonyPrefix]
-    static void StartSubtitlePrefix(Subtitle subtitle, bool isPCResponseMenuNext, bool isPCAutoResponseNext) {
+    static void StartSubtitlePrefix(ref Subtitle subtitle, bool isPCResponseMenuNext, bool isPCAutoResponseNext) {
         string text = subtitle.dialogueEntry.currentDialogueText;
 
         if (string.IsNullOrEmpty(text))
