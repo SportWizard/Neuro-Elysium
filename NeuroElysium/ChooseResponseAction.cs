@@ -13,12 +13,12 @@ internal class ChooseResponseAction : NeuroAction<Response> {
     private readonly Il2CppReferenceArray<Response> _responses;
     private readonly string[] _responsesString;
 
-    public ChooseResponseAction(Il2CppReferenceArray<Response> responses) {
+    public ChooseResponseAction(ref Il2CppReferenceArray<Response> responses) {
         _responses = responses;
         _responsesString = new string[responses.Length];
 
-        for (int i = 0; i < responses.Length; i++)
-            _responsesString[i] = responses[i].destinationEntry.DialogueText;
+        for (int i = 0; i < _responses.Length; i++)
+            _responsesString[i] = _responses[i].destinationEntry.DialogueText;
     }
 
     public override string Name => "choose_response";
