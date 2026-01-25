@@ -1,22 +1,30 @@
 ﻿using HarmonyLib;
-using Il2CppInterop.Runtime.InteropTypes.Arrays;
 using NeuroSdk.Actions;
 using PixelCrushers.DialogueSystem;
-using UnityEngine;
+using System.Collections.Generic;
 
 namespace NeuroElysium.Patches;
 
 [HarmonyPatch]
 internal class ResponsesPatch {
-    [HarmonyPatch(typeof(ConversationView), "StartResponses")]
-    [HarmonyPrefix]
-    static void StartResponsesPrefix(ref Subtitle subtitle, ref Il2CppReferenceArray<Response> responses) {
-        if (responses == null)
+    private static List<SunshineResponseButton> buttons = [];
+
+    [HarmonyPatch(typeof(SunshineResponseButton), "OnEnable")]
+    [HarmonyPostfix]
+    static void SunshineResponseButtonPostfix(ref SunshineResponseButton __instance) {
+        if (__instance == null)
             return;
 
-        ActionWindow.Create(GO.PluginObject)
-            .SetForce(0, "Choose a response", "", false)
-            .AddAction(new ChooseResponseAction(ref responses))
-            .Register();
+        buttons.Add(__instance);
+
+        // Since each instance is only one response. Need to collect all the response before sending to Neuro
+        if (DialogueManager.currentConversationState.pcResponses.Length == buttons.Count) {
+            ActionWindow.Create(GO.PluginObject)
+                .SetForce(0, "Choose a response", "", false)
+                .AddAction(new ChooseResponseAction(ref buttons))
+                .Register();
+
+            buttons = [];
+        }
     }
 }

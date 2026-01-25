@@ -1,24 +1,22 @@
-﻿using Il2CppInterop.Runtime.InteropTypes.Arrays;
-using NeuroSdk.Actions;
+﻿using NeuroSdk.Actions;
 using NeuroSdk.Json;
 using NeuroSdk.Websocket;
 using Newtonsoft.Json.Linq;
-using PixelCrushers.DialogueSystem;
 using System;
 using System.Collections.Generic;
 
 namespace NeuroElysium;
 
-internal class ChooseResponseAction : NeuroAction<Response> {
-    private readonly Il2CppReferenceArray<Response> _responses;
-    private readonly string[] _responsesString;
+internal class ChooseResponseAction : NeuroAction<SunshineResponseButton> {
+    private readonly List<SunshineResponseButton> _buttons;
+    private readonly string[] _responses;
 
-    public ChooseResponseAction(ref Il2CppReferenceArray<Response> responses) {
-        _responses = responses;
-        _responsesString = new string[responses.Length];
+    public ChooseResponseAction(ref List<SunshineResponseButton> buttons) {
+        _buttons = buttons;
+        _responses = new string[_buttons.Count];
 
-        for (int i = 0; i < _responses.Length; i++)
-            _responsesString[i] = _responses[i].destinationEntry.DialogueText;
+        for (int i = 0; i < _buttons.Count; i++)
+            _responses[i] = _buttons[i].response.destinationEntry.currentDialogueText;
     }
 
     public override string Name => "choose_response";
@@ -27,32 +25,32 @@ internal class ChooseResponseAction : NeuroAction<Response> {
     
     protected override JsonSchema Schema => new() {
         Type = JsonSchemaType.Object,
-        Required = new List<string> { "choice" },
+        Required = ["choice"],
         Properties = new Dictionary<string, JsonSchema> {
-            ["choice"] = QJS.Enum(_responsesString)
+            ["choice"] = QJS.Enum(_responses)
         }
     };
 
-    protected override ExecutionResult Validate(ActionJData actionData, out Response? response) {
+    protected override ExecutionResult Validate(ActionJData actionData, out SunshineResponseButton? button) {
         string choice = actionData.Data?["choice"]?.Value<string>();
 
         if (string.IsNullOrEmpty(choice)) {
-            response = null;
+            button = null;
             return ExecutionResult.Failure("Action failed. Missing required parameter 'choice'.");
         }
 
-        int index = Array.FindIndex(_responsesString, r => r.Equals(choice));
+        int index = Array.FindIndex(_responses, r => r.Equals(choice));
 
         if (index == -1) {
-            response = null;
+            button = null;
             return ExecutionResult.Failure("Action failed. Invalid parameter 'choice'.");
         }
 
-        response = _responses[index];
+        button = _buttons[index];
         return ExecutionResult.Success();
     }
 
-    protected override void Execute(Response response) {
-        DialogueManager.ConversationView.SelectResponse(new SelectedResponseEventArgs(response));
+    protected override void Execute(SunshineResponseButton button) {
+        button.RegisterClick();
     }
 }

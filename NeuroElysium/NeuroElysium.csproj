@@ -22,6 +22,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>lib\Assembly-CSharp.dll</HintPath>
+    </Reference>
     <Reference Include="DialogueSystem">
       <HintPath>lib\DialogueSystem.dll</HintPath>
     </Reference>
