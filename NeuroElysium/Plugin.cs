@@ -6,7 +6,7 @@ using HarmonyLib;
 
 namespace NeuroElysium;
 
-[BepInPlugin("com.sportwizard.neuroelysium", "Neuro Elysium", "1.0.0")]
+[BepInPlugin("com.sportwizard.neuroelysium", "Neuro Elysium", "0.1.0")]
 [BepInProcess("Disco Elysium.exe")]
 internal class Plugin : BasePlugin {
     internal static new ManualLogSource Log;
