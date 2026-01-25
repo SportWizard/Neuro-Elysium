@@ -5,7 +5,7 @@ using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 
-namespace NeuroElysium;
+namespace NeuroElysium.Actions;
 
 internal class ChooseResponseAction : NeuroAction<SunshineResponseButton> {
     private readonly List<SunshineResponseButton> _buttons;
