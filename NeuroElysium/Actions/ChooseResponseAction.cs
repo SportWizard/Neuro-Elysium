@@ -11,7 +11,7 @@ internal class ChooseResponseAction : NeuroAction<SunshineResponseButton> {
     private readonly List<SunshineResponseButton> _buttons;
     private readonly string[] _responses;
 
-    public ChooseResponseAction(ref List<SunshineResponseButton> buttons) {
+    public ChooseResponseAction(List<SunshineResponseButton> buttons) {
         _buttons = buttons;
         _responses = new string[_buttons.Count];
 

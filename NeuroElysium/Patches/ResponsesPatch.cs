@@ -13,7 +13,7 @@ internal class ResponsesPatch {
 
     [HarmonyPatch(typeof(SunshineResponseButton), "OnEnable")]
     [HarmonyPostfix]
-    static void SunshineResponseButtonPostfix(ref SunshineResponseButton __instance) {
+    static void SunshineResponseButtonPostfix(SunshineResponseButton __instance) {
         if (__instance == null ||DialogueManager.CurrentConversationState == null || DialogueManager.CurrentConversationState.pcResponses == null)
             return;
 
@@ -26,7 +26,7 @@ internal class ResponsesPatch {
         if (DialogueManager.CurrentConversationState.pcResponses.Length - _lockedButton == _buttons.Count) {
             ActionWindow.Create(GO.PluginObject)
                 .SetForce(0, "Choose a response", "", false)
-                .AddAction(new ChooseResponseAction(ref _buttons))
+                .AddAction(new ChooseResponseAction(_buttons))
                 .Register();
 
             _buttons = [];
