@@ -9,14 +9,14 @@ namespace NeuroElysium.Actions;
 
 internal class ChooseResponseAction : NeuroAction<SunshineResponseButton> {
     private readonly List<SunshineResponseButton> _buttons;
-    private readonly string[] _responses;
+    private readonly string[] _dialogueResponses;
 
     public ChooseResponseAction(List<SunshineResponseButton> buttons) {
         _buttons = buttons;
-        _responses = new string[_buttons.Count];
+        _dialogueResponses = new string[_buttons.Count];
 
         for (int i = 0; i < _buttons.Count; i++)
-            _responses[i] = _buttons[i].response.destinationEntry.currentDialogueText;
+            _dialogueResponses[i] = _buttons[i].response.destinationEntry.currentDialogueText;
     }
 
     public override string Name => "choose_response";
@@ -27,7 +27,7 @@ internal class ChooseResponseAction : NeuroAction<SunshineResponseButton> {
         Type = JsonSchemaType.Object,
         Required = ["choice"],
         Properties = new Dictionary<string, JsonSchema> {
-            ["choice"] = QJS.Enum(_responses)
+            ["choice"] = QJS.Enum(_dialogueResponses)
         }
     };
 
@@ -39,7 +39,7 @@ internal class ChooseResponseAction : NeuroAction<SunshineResponseButton> {
             return ExecutionResult.Failure("Action failed. Missing required parameter 'choice'.");
         }
 
-        int index = Array.FindIndex(_responses, r => r.Equals(choice));
+        int index = Array.FindIndex(_dialogueResponses, r => r.Equals(choice));
 
         if (index == -1) {
             button = null;
