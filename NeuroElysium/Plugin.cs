@@ -8,7 +8,7 @@ namespace NeuroElysium;
 
 [BepInPlugin("com.sportwizard.neuroelysium", "Neuro Elysium", "0.1.0")]
 [BepInProcess("Disco Elysium.exe")]
-internal class Plugin : BasePlugin {
+public class Plugin : BasePlugin {
     internal static new ManualLogSource Log;
 
     public override void Load() {
