@@ -1,5 +1,5 @@
 # Neuro-Elysium
-This mod allows Neuro-sama to play [Disco Elysium](https://store.steampowered.com/app/632470/Disco_Elysium__The_Final_Cut) using the [Neuro SDK](https://github.com/VedalAI/neuro-sdk).
+This project provides an integration that allows Neuro-sama to interact with [Disco Elysium](https://store.steampowered.com/app/632470/Disco_Elysium__The_Final_Cut) using the [Neuro SDK](https://github.com/VedalAI/neuro-sdk).
 
 ## What can Neuro control?
 Currently, Neuro can only:
@@ -28,3 +28,8 @@ Currently, Neuro can only:
 
 ## Disclaimer
 This mod does **not include Disco Elysium or any of its game files**. You must own the game and have it installed yourself. Do **not redistribute any game files or DLLs**; only copy them locally for the mod to work.
+
+All game content is accessed at runtime from the user's local installation and is not stored or distributed by this project.
+
+This project is not affiliated with or endorsed by ZA/UM.
+Disco Elysium is a trademark and property of its respective owners.
