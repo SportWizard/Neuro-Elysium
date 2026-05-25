@@ -24,7 +24,7 @@ Currently, Neuro can only:
 4. Copy `.\NeuroElysium\bin\Debug\net6.0\NeuroElysium.dll` to `PathOfGame\BepInEx\plugins`
 
 > [!NOTE]
-> You might require to download [Newtonsoft.Json](https://github.com/JamesNK/Newtonsoft.Json) v13.0.3 and extract `.\Bin\net6.0\Newtonsoft.Json.dll` to `PathOfGame\BepInEx\plugins` for the mod to work with the Neuro SDK. Since Neuro SDK v2.0.0 uses Newtonsoft.Json v13.0.3.
+> You might require to copy `.\NeuroElysium\bin\Debug\net6.0\Newtonsoft.Json.dll` to `PathOfGame\BepInEx\plugins` or download [Newtonsoft.Json](https://github.com/JamesNK/Newtonsoft.Json) v13.0.3 and extract `.\Bin\net6.0\Newtonsoft.Json.dll` to `PathOfGame\BepInEx\plugins` for the mod to work with the Neuro SDK. Since Neuro SDK v2.0.0 uses Newtonsoft.Json v13.0.3.
 
 ## Disclaimer
 This mod does **not include Disco Elysium or any of its game files**. You must own the game and have it installed yourself. Do **not redistribute any game files or DLLs**; only copy them locally for the mod to work.
