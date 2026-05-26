@@ -32,7 +32,7 @@ internal class ChooseResponseAction : NeuroAction<SunshineResponseButton> {
     };
 
     protected override ExecutionResult Validate(ActionJData actionData, out SunshineResponseButton? button) {
-        string choice = actionData.Data?["choice"]?.Value<string>();
+        string? choice = actionData.Data?["choice"]?.Value<string>();
 
         if (string.IsNullOrEmpty(choice)) {
             button = null;
@@ -50,7 +50,7 @@ internal class ChooseResponseAction : NeuroAction<SunshineResponseButton> {
         return ExecutionResult.Success();
     }
 
-    protected override void Execute(SunshineResponseButton button) {
-        button.RegisterClick();
+    protected override void Execute(SunshineResponseButton? button) {
+        button?.RegisterClick();
     }
 }
