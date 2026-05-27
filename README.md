@@ -1,6 +1,8 @@
 # Neuro-Elysium
 This project provides an integration that allows Neuro-sama to interact with [Disco Elysium](https://store.steampowered.com/app/632470/Disco_Elysium__The_Final_Cut) using the [Neuro SDK](https://github.com/VedalAI/neuro-sdk).
 
+https://github.com/user-attachments/assets/a9b9c535-8c3d-41ec-8bbb-d6eef99f7f75
+
 ## What can Neuro control?
 Currently, Neuro can only:
 - Choose dialogue responses (excluding "Continue" and "End" responses)
