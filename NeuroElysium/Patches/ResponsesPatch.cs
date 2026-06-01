@@ -25,7 +25,6 @@ internal class ResponsesPatch {
         // Since each instance is only one response. Need to collect all the response before sending to Neuro
         if (DialogueManager.CurrentConversationState.pcResponses.Length - _lockedButton == _buttons.Count) {
             ActionWindow.Create(GO.PluginObject)
-                .SetForce(0, "Choose a response", "", false)
                 .AddAction(new ChooseResponseAction(_buttons))
                 .Register();
 
