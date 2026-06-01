@@ -14,6 +14,9 @@ internal class DialoguePatch {
         if (string.IsNullOrEmpty(text))
             return;
 
-        Context.Send(text);
+        int actorId = subtitle.dialogueEntry.ActorID;
+        Actor actor = DialogueManager.masterDatabase.GetActor(actorId);
+
+        Context.Send($"{actor.Name}: {text}");
     }
 }
