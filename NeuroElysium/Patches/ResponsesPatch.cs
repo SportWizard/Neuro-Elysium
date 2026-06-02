@@ -13,8 +13,8 @@ internal class ResponsesPatch {
 
     [HarmonyPatch(typeof(SunshineResponseButton), "OnEnable")]
     [HarmonyPostfix]
-    private static void SunshineResponseButtonPostfix(SunshineResponseButton __instance) {
-        if (__instance == null || DialogueManager.CurrentConversationState == null || DialogueManager.CurrentConversationState.pcResponses == null)
+    private static void OnEnablePostfix(SunshineResponseButton __instance) {
+        if (__instance is null || DialogueManager.CurrentConversationState?.pcResponses is null)
             return;
 
         if (__instance.response.enabled)
